@@ -1,0 +1,779 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+/*-------------------
+|   CSS Değişkenleri  |
+--------------------*/
+:root {
+    --bg-color: #e6f2ff; /* Floral White - Daha sıcak bir zemin */
+    --bg-gradient-end: #fff5e6; /* Gradyan bitiş rengi */
+    --text-color: #2d3436; /* Daha koyu ve net gri */
+    --primary-color: #ff7675; /* Mercan Rengi (Coral) - Mavi yerine sıcak vurgu */
+    --secondary-color: #85b7cc; /* Açık Gri/Gümüş - Sarı yerine nötr renk */
+    --accent-color: #6c5ce7; /* Mor - İkincil vurgu */
+    --card-bg-color: #ffffff;
+    --border-color: #e6f2ff;
+    --header-bg-color: rgba(255, 250, 240, 0.1); /* Çok daha şeffaf (Cam efekti için) */
+    --shadow-color: rgba(100, 149, 237, 0.1);
+    --heading-font: 'Playfair Display', serif;
+}
+
+[data-theme="dark"] {
+    --bg-color: #260a6d; /* Tam Siyah - En koyu mod */
+    --bg-gradient-end: #0a0a0a; /* Siyaha yakın koyu gri */
+    --text-color: #e0e0e0;
+    --primary-color: #ff7675;
+    --secondary-color: #d592be; /* Koyu Gri - Sarı yerine */
+    --accent-color: #a29bfe;
+    --card-bg-color: #24305e;
+    --border-color: #3a4e8a;
+    --header-bg-color: rgba(0, 0, 0, 0.2); /* Koyu modda şeffaf header */
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+/*-------------------
+|   Temel Stiller    |
+--------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-gradient-end) 100%); /* Temaya duyarlı gradyan */
+    background-attachment: fixed;
+    color: var(--text-color);
+    transition: background-color 0.5s, color 0.5s;
+    line-height: 1.7;
+    overflow-x: hidden; /* Yüzen şekillerin taşmasını önlemek için */
+}
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 90px 20px 20px;
+}
+
+section {
+    padding: 60px 20px;
+    border-bottom: 1px solid var(--border-color);
+    opacity: 0;
+    transform: translateY(50px) scale(0.98);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+section:last-of-type {
+    border-bottom: none;
+}
+
+h1, h2, h3 {
+    font-family: var(--heading-font);
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 3.8rem;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+/*-------------------
+|  Header & Navigasyon |
+--------------------*/
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: var(--header-bg-color);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 20px var(--shadow-color);
+    border-bottom: 1px solid rgba(255, 118, 117, 0.1); /* İnce sıcak bir çizgi */
+    transition: top 0.3s;
+}
+
+nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 70px;
+}
+
+/* Logo / Site Başlığı Stili */
+.nav-logo {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    display: none;
+}
+
+.nav-left a {
+    margin-right: 25px;
+    font-weight: 500;
+    position: relative;
+    padding: 8px 16px;
+    font-size: 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 20px; /* Hap şeklinde buton görünümü */
+    transition: all 0.3s ease;
+}
+
+/* Alt çizgi yerine arka plan değişimi */
+.nav-left a::after { display: none; }
+
+.nav-left a:hover, .nav-left a.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255, 118, 117, 0.3);
+}
+
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-right button {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-right button:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+    transform: translateY(-2px) scale(1.1);
+}
+
+.lang-switch {
+    display: flex;
+    background-color: var(--card-bg-color);
+    border-radius: 20px;
+    padding: 5px;
+    border: 1px solid var(--border-color);
+}
+
+.lang-switch button {
+    all: unset;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.lang-switch button.active {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* Hamburger Menu */
+.nav-right .hamburger {
+    display: none;
+    background: transparent !important; /* Arka planı zorla kaldır */
+    border: none !important; /* Çerçeveyi zorla kaldır */
+    box-shadow: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    position: relative;
+    z-index: 1002;
+    width: 42px; /* Diğer butonlarla aynı genişlikte kalsın ama şeffaf */
+    height: 42px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.nav-right .hamburger:hover {
+    background: transparent !important;
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+/*-------------------
+|    Hero Bölümü     |
+--------------------*/
+#hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    width: 100%;
+}
+
+.hero-text { flex: 1; }
+
+.hero-title span {
+    opacity: 0;
+    transform: translateY(20px);
+    display: inline-block;
+    animation: fadeInLetter 0.3s forwards;
+}
+
+@keyframes fadeInLetter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+#hero-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 1.05rem;
+}
+
+.contact-info span, .contact-info a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.contact-info i {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    width: 25px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+.contact-info a:hover i {
+    transform: scale(1.2);
+}
+
+.hero-image {
+    flex-basis: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 15px 40px var(--shadow-color);
+    border: 8px solid var(--card-bg-color);
+    animation: zoomIn 1s ease-out forwards, floatImage 6s ease-in-out infinite 1.5s;
+    z-index: 2;
+    position: relative; /* Resimlerin üst üste binmesi için */
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes floatImage {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.hero-image img {
+    position: absolute; /* Resimleri üst üste sabitle */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* İlk resim (Öndeki) */
+.hero-image img:nth-child(1) {
+    z-index: 2;
+    opacity: 1;
+}
+
+/* Hover olunca ilk resmi gizle (Alttaki görünür olur) */
+.hero-image:hover img:nth-child(1) {
+    opacity: 0;
+}
+
+/* Her iki resme de zoom efekti uygula */
+.hero-image:hover img {
+    transform: scale(1.15) rotate(3deg);
+}
+
+/*-------------------
+|    Hakkımda Bölümü    |
+--------------------*/
+#about { text-align: center; }
+#about .collapsible-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+/*----------------------
+| Deneyim & Eğitim Sütunları |
+------------------------*/
+#experience-education .column-container {
+    display: flex;
+    gap: 40px;
+}
+#experience-education .column {
+    flex: 1;
+}
+#experience-education h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+.exp-card, .edu-card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    transform-style: preserve-3d; /* 3D Tilt için */
+}
+.exp-card:hover, .edu-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px var(--shadow-color);
+}
+.exp-card h3, .edu-card h3 {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+}
+.exp-card .company, .edu-card .school {
+    font-weight: 600;
+    color: var(--text-color);
+    font-style: italic;
+    margin-bottom: 8px;
+}
+.exp-card .date, .edu-card .date {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/*-------------------
+|    Projeler        |
+--------------------*/
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: var(--card-bg-color);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 20px var(--shadow-color);
+    transition: transform 0.4s, box-shadow 0.4s;
+    display: flex;
+    flex-direction: column;
+    transform-style: preserve-3d; /* 3D Tilt için */
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 35px var(--shadow-color);
+}
+
+/*-------------------
+|    Sertifikalar    |
+--------------------*/
+.certificates-container {
+    max-width: 1000px;
+    margin: 0 auto 40px;
+}
+.cert-category {
+    margin-bottom: 40px;
+}
+.cert-category h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+.cert-card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    font-weight: 500;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    transform-style: preserve-3d;
+}
+.cert-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    color: var(--accent-color);
+}
+.cert-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Yeni "Tümünü Görüntüle" Butonu Stili */
+.view-all-btn-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.view-all-btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 118, 117, 0.4);
+    background-color: var(--accent-color);
+}
+
+/*-------------------
+|    Beceriler       |
+--------------------*/
+#skills {
+    padding-bottom: 60px;
+}
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Mobilde yan yana sığması için küçültüldü */
+    gap: 25px;
+    text-align: center;
+    justify-content: center;
+}
+.skill-category h3 {
+    margin-bottom: 25px;
+    text-align: center;
+}
+.skill-category ul {
+    list-style: none;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+.skill-category li {
+    background-color: var(--card-bg-color);
+    padding: 10px 18px;
+    border-radius: 25px;
+    border: 1px solid var(--border-color);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.skill-category li:hover {
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
+    transform: scale(1.05);
+    border-color: var(--secondary-color);
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+.skill-category li i {
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    margin-right: 0;
+}
+.skill-category li:hover i {
+    max-width: 30px;
+    opacity: 1;
+    margin-right: 8px;
+}
+
+/*-------------------
+|   Scroll Butonları   |
+--------------------*/
+.scroll-buttons {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+}
+
+.scroll-buttons button {
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    backdrop-filter: blur(5px);
+}
+.scroll-buttons button.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-buttons button:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 118, 117, 0.6); /* Parlama efekti */
+}
+
+/*-------------------
+|      Footer        |
+--------------------*/
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 60px;
+    background: linear-gradient(to top, var(--card-bg-color), transparent);
+    border-top: none;
+    position: relative;
+}
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+}
+
+/*-------------------
+|  Konfeti Animasyonu  |
+--------------------*/
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 9999;
+}
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 16px;
+    background-color: var(--primary-color);
+    opacity: 0;
+    animation: confetti-fall 4s ease-in-out forwards;
+}
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/*-------------------
+|   Yüzen Şekiller   |
+--------------------*/
+.floating-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: 0.4;
+    animation: floatAnimation 20s infinite alternate;
+}
+@keyframes floatAnimation {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+/*-------------------
+|  Sıralı Animasyon  |
+--------------------*/
+.hidden-stagger {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.visible-stagger {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*-------------------
+| Mobil Uyumluluk (Responsive) |
+--------------------*/
+@media (max-width: 992px) {
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.2rem; }
+    .hero-content {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .hero-text { text-align: center; }
+    .contact-info { align-items: center; }
+
+    #experience-education .column-container {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* Hamburger Görünür Olsun */
+    .nav-right .hamburger { display: block; }
+
+    /* Mobilde Logo Sola */
+    nav {
+        position: relative;
+        justify-content: space-between;
+    }
+    .nav-logo {
+        display: block;
+        position: static;
+        transform: none;
+        width: auto;
+        z-index: 1001;
+    }
+
+    /* Mobil Menü Stili (Sağdan Kayan Panel) */
+    .nav-left {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%; /* Ekran dışına gizle */
+        width: 70%;
+        height: 100vh;
+        background-color: var(--card-bg-color);
+        padding-top: 0; /* Üst boşluğu kaldırdık, tam ortalanması için */
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+        z-index: 1001;
+        align-items: center;
+        justify-content: center; /* İçeriği dikeyde tam ortalar */
+        gap: 20px;
+        overflow-y: auto; /* Menü içeriği taşarsa kaydırma çubuğu çıksın */
+    }
+
+    .nav-left.active {
+        right: 0; /* Ekrana getir */
+    }
+
+    .nav-left a {
+        margin-right: 0;
+        font-size: 1.2rem;
+        width: 80%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    main { padding-top: 70px; }
+    .hero-image { width: 220px; height: 220px; }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 2.5rem; }
+    #hero-subtitle { font-size: 1.2rem; }
+    .project-grid, .certificates-grid { grid-template-columns: 1fr; }
+    .hero-image { width: 180px; height: 180px; }
+    .scroll-buttons { bottom: 20px; right: 20px; }
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selin Avcı | Bilişim Sistemleri Mühendisi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="confetti-container"></div>
+
+    <header>
+        <nav>
+            <div class="nav-logo" data-lang-key="siteTitle">Selin Avcı CV Sitesi</div>
+            <div class="nav-left">
+                <a href="#hero" class="active" data-lang-key="navHome">Ana Sayfa</a>
+                <a href="#about" data-lang-key="navAbout">Hakkımda</a>
+                <a href="#project-roles" data-lang-key="navRoles">Roller</a>
+                <a href="#experience-education" data-lang-key="navExperience">Deneyim & Eğitim</a>
+                <a href="#projects" data-lang-key="navProjects">Projeler</a>
+                <a href="#skills" data-lang-key="navSkills">Beceriler</a>
+            </div>
+            <div class="nav-right">
+                <div class="lang-switch">
+                    <button class="lang-btn active" data-lang="tr">TR</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <button id="theme-toggle" aria-label="Toggle theme">☀️</button>
+                <button class="hamburger" id="hamburger-btn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Selin Avcı</h1>
+                    <p id="hero-subtitle" data-lang-key="heroSubtitle">Kocaeli Üniversitesi Bilişim Sistemleri Mühendisliği ve İstanbul Üniversitesi Bilgisayar Programcılığı mezunu, yenilikçi teknolojilere ve proje yönetimine tutkulu bir mühendis.</p>
+                    <div class="contact-info">
+                        <a href="mailto:avciselin@hotmail.com"><i class="fas fa-envelope"></i> avciselin@hotmail.com</a>
+                        <a href="https://github.com/selinavci09" target="_blank"><i class="fab fa-github"></i> github.com/selinavci09</a>
+                        <a href="https://www.linkedin.com/in/selin-avcı-75b528224/" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/selin-avci</a>
+                        <span><i class="fas fa-phone"></i> +90 545 318 7735</span>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/Ben.jpeg" alt="Selin Avcı">
+                    <img src="assets/Ben2.jpeg" alt="Selin Avcı">
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2 data-lang-key="aboutTitle">Hakkımda</h2>
+            <div class="collapsible-content">
+                 <p data-lang-key="aboutText">Kocaeli Üniversitesi Teknoloji Fakültesi Bilişim Sistemleri Mühendisliği 2025 yılı mezunuyum. Aynı zamanda İstanbul Üniversitesi Bilgisayar Programcılığı bölümünden 2024 yılında mezun oldum. Öğrenim hayatım boyunca ve sonrasında, yapay zeka, mobil geliştirme ve proje yönetimi gibi alanlarda kendimi geliştirmeye odaklandım. TÜBİTAK ve Sanayi ve Teknoloji Bakanlığı gibi kurumların Ar-Ge projelerinde aktif rol alarak, akademik bilgimi pratik deneyimle birleştirdim.</p>
+            </div>
+        </section>
+
+        <section id="project-roles">
+            <h2 data-lang-key="rolesTitle">Ulusal ve Uluslararası Projelerdeki Rollerim</h2>
+            <div class="project-grid" id="roles-grid">
+                <!-- Roller içeriği script.js tarafından buraya eklenecek -->
+            </div>
+        </section>
+
+        <section id="experience-education">
+            <div class="column-container">
+                <div class="column">
+                    <h2 data-lang-key="experienceTitle">İş Deneyimi</h2>
+                    <div id="experience-container">
+                        <!-- Deneyim içeriği script.js tarafından buraya eklenecek -->
+                    </div>
+                </div>
+                <div class="column">
+                    <h2 data-lang-key="educationTitle">Eğitim Geçmişi</h2>
+                    <div id="education-container">
+                        <!-- Eğitim içeriği script.js tarafından buraya eklenecek -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 data-lang-key="projectsTitle">Projeler</h2>
+            <div class="project-grid">
+                <!-- Proje içeriği script.js tarafından buraya eklenecek -->
+            </div>
+        </section>
+
+        <section id="certificates">
+            <h2 data-lang-key="certificatesTitle">Sertifikalar</h2>
+            <div class="certificates-container">
+                 <!-- Sertifika içeriği script.js tarafından buraya eklenecek -->
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 data-lang-key="skillsTitle">Beceriler</h2>
+            <div class="skills-container">
+                <!-- Beceri içeriği script.js tarafından buraya eklenecek -->
+            </div>
+        </section>
+    </main>
+    
+    <div class="scroll-buttons">
+        <button id="scroll-to-top" aria-label="Go to top"><i class="fas fa-arrow-up"></i></button>
+        <button id="scroll-to-bottom" aria-label="Go to bottom"><i class="fas fa-arrow-down"></i></button>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Selin Avcı. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
